@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gml:featureMember>
+<egb:EGB_PunktGraniczny gml:id="----1-----">
+<gml:identifier codeSpace="http://iip.gov.pl">----2-----</gml:identifier>
+<egb:idIIP>
+<bt:BT_Identyfikator>
+<bt:lokalnyId>----3-----</bt:lokalnyId>
+<bt:przestrzenNazw>PL.PZGiK.307.EGiB</bt:przestrzenNazw>
+<bt:wersjaId>DataExport</bt:wersjaId>
+</bt:BT_Identyfikator>
+</egb:idIIP>
+<egb:startObiekt>----3v2-----</egb:startObiekt>
+<egb:startWersjaObiekt>----4-----</egb:startWersjaObiekt>
+<egb:podstawaPrawnaUtworzeniaWersjiObiektu nilReason="inapplicable"/>
+<egb:geometria>
+<gml:Point gml:id="pt1_obj_id_1076507" srsName="urn:ogc:def:crs:EPSG::2178">
+<gml:pos>---wsp---</gml:pos>
+</gml:Point>
+</egb:geometria>
+<egb:idPunktu>D.126104_9.0097.1884</egb:idPunktu>
+<egb:dodatkoweInformacje>Dokument : Import z DGN
+Rodzaj zmiany : brak danych Współrzędne XYH po transfornacji i zmianie dokładności.</egb:dodatkoweInformacje>
+<egb:oznWMaterialeZrodlowym xsi:nil="true" nilReason="missing"/>
+<egb:zrodloDanychZRD>1</egb:zrodloDanychZRD>
+<egb:bladPolozeniaWzgledemOsnowy xsi:nil="true" nilReason="unknown"/>
+<egb:kodStabilizacji>2</egb:kodStabilizacji>
+<egb:kodRzeduGranicy>1</egb:kodRzeduGranicy>
+<egb:czyPunktNalezyDoSpornejGranicy xsi:nil="true" nilReason="unknown"/>
+</egb:EGB_PunktGraniczny>
+</gml:featureMember>

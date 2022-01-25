@@ -1,0 +1,39 @@
+<gml:featureMember>
+<egb:EGB_DzialkaEwidencyjna gml:id=#1>
+<gml:identifier codeSpace="http://iip.gov.pl">#2</gml:identifier>
+<egb:idIIP>
+<bt:BT_Identyfikator>
+<bt:lokalnyId>942B7532-4FAC-4279-AC25-65D5128CFE72</bt:lokalnyId>
+<bt:przestrzenNazw>PL.PZGiK.307.EGiB</bt:przestrzenNazw>
+<bt:wersjaId>2010-03-16T12:46:05</bt:wersjaId>
+</bt:BT_Identyfikator>
+</egb:idIIP>
+<egb:startObiekt>#3</egb:startObiekt>
+<egb:startWersjaObiekt>2010-03-16T12:46:05</egb:startWersjaObiekt>
+<egb:podstawaPrawnaUtworzeniaWersjiObiektu xlink:href="urn:pzgik:id:PL.PZGiK.307.EGiB:2B7E1839-02AE-4DDB-B74F-C6BC7ABFA95A"/>
+<egb:idDzialki>126104_9.0097.#4</egb:idDzialki>
+<egb:powierzchniaEwidencyjna uom="ha">#5</egb:powierzchniaEwidencyjna>
+<egb:geometria>
+<gml:Polygon gml:id="pg1_obj_id_28940052" srsName="urn:ogc:def:crs:EPSG::2178">
+<gml:exterior>
+<gml:LinearRing>
+<gml:posList srsDimension="2">#6</gml:posList>
+</gml:LinearRing>
+</gml:exterior>
+</gml:Polygon>
+</egb:geometria>
+<egb:waznoscOd xsi:nil="true" nilReason="unknown"/>
+<egb:waznoscDo xsi:nil="true" nilReason="inapplicable"/>
+<egb:wartoscGruntu xsi:nil="true" nilReason="inapplicable"/>
+<egb:dataWyceny xsi:nil="true" nilReason="inapplicable"/>
+<egb:informacjaODokladnReprezentacjiPola>1</egb:informacjaODokladnReprezentacjiPola>
+<egb:nrRejestruZabytkow xsi:nil="true" nilReason="missing"/>
+<egb:idRejonuStatystycznego xsi:nil="true" nilReason="unknown"/>
+<egb:dzialkaObjetaFormaOchronyPrzyrody>false</egb:dzialkaObjetaFormaOchronyPrzyrody>
+<egb:lokalizacjaDzialki2 xlink:href="urn:pzgik:id:PL.PZGiK.307.EGiB:4EAF9C5D-413E-4BCF-B8E0-670828152412"/>
+<egb:JRG2 xlink:href="urn:pzgik:id:PL.PZGiK.307.EGiB:6B5284F1-11F8-47D5-9CA4-5E80385E46B1"/>
+<egb:klasouzytekWGranicachDzialki xlink:href="urn:pzgik:id:PL.PZGiK.307.EGiB:0C58E3A2-C48C-4409-8124-00B1442D487A"/>
+#7
+<egb:adresDzialki xlink:href="urn:pzgik:id:PL.PZGiK.307.EGiB:4D09D77E-4525-42CB-B165-57D680BCABFC"/>
+</egb:EGB_DzialkaEwidencyjna>
+</gml:featureMember>
