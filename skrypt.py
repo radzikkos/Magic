@@ -23,11 +23,12 @@ def importPunkty(path = './dane.txt'):
     listaPunktowTworzacychPola = []
     listaDict = []
     for i in range(1, len(lista)):
-        if len(lista[i]) == 0 or i == len(lista) - 1:
+        if len(lista[i]) == 0:
             listaPunktowTworzacychPola.append(listaDict)
             listaDict = []
         else:
             listaDict.append(dict(zip(klucze,lista[i])))
+    listaPunktowTworzacychPola.append(listaDict)
     return listaPunktowTworzacychPola
 
 def importSzablon(path):
@@ -101,6 +102,7 @@ def zamienPktwXML(punkt,szablon):
     wsp = str(float(punkt['X'])) + ' ' + str(float(punkt['Y']))
     punktXML = punktXML.replace('---wsp---',wsp)
 
+    punktXML = punktXML.replace('#99',punkt['nr'])
     # punktXML += '\n'
     return punktXML
 
@@ -155,7 +157,7 @@ def zamienDZwXML(nrDz, punkty,szablon):
     piatka = str(pole(punkty))
     dzXML = dzXML.replace('#5', piatka)
 
-    czworka = '126104_9.0097.' + str(nrDz)
+    czworka = str(nrDz)
     dzXML = dzXML.replace('#4', czworka)
 
     trojka = str(date.today())+'T00-00-00'
@@ -163,7 +165,7 @@ def zamienDZwXML(nrDz, punkty,szablon):
 
     dwa = '942B7532-4FAC-4279-AC25-65D5128CFE72' +':'+str(date.today())+'T00:00:00'
     dzXML = dzXML.replace('#2', dwa)
-    jeden = '942B7532-4FAC-4279-AC25-65D5128CFE72' +'_'+str(date.today())+'T00-00-00'
+    jeden = '"942B7532-4FAC-4279-AC25-65D5128CFE72' +'_'+str(date.today())+'T00-00-00"'
     dzXML = dzXML.replace('#1', jeden)
     
     return dzXML
@@ -174,7 +176,7 @@ def dodajDzialkiEwidDoGML(plikGML, listaDzialekXML, listaPuntkowXML):
 
     dzialkiIPunkty = ''
     for i in range(len(listaDzialekXML)):
-        dzialkiIPunkty += listaDzialekXML[i] + listaPuntkowXML[i] + '\n'
+        dzialkiIPunkty += listaPuntkowXML[i] + '\n' + listaDzialekXML[i] 
     wersjaKoncowa = podzielonyGML[0] + dzialkiIPunkty + wzor + podzielonyGML[1]
     #wersjaKoncowa = ''.join(podzielonyGML[0]) + dzialka + punkty + '\n' + wzor + podzielonyGML[1]
     #print(wersjaKoncowa)
@@ -208,15 +210,21 @@ listaPunktow = importPunkty()
 szablonPG = importSzablon('szablonPG.xml')
 
 xmlListaPuntkow = zamienListePunktowListeXML(listaPunktow, szablonPG)
-
 nrDzialek = pobierzNrDzialek(listaPunktow)
 
 szablonDzEwid = importSzablon('szablonDzEwid.xml')
 
 xmlListaDzialek = stworzListeDzialekXML(nrDzialek, listaPunktow, szablonDzEwid)
-
+# print(xmlListaDzialek[0])
 gml = importSzablon('GML.gml')
-
-wersjaKoncowa = dodajDzialkiEwidDoGML(gml, xmlListaDzialek, xmlListaPuntkow)
-
-exportXML(r'daneXML.xml', wersjaKoncowa)
+def zlaczDzialkiEwidIPunkty(xmlListaDzialek, xmlListaPunktow):
+    dzialkiIPunkty = '<?xml version="1.0" encoding="UTF-8"?>\n' + '<gml:FeatureCollection xmlns:os="urn:gugik:specyfikacje:gmlas:osnowaGeodezyjna:1.0" xmlns:ges="urn:gugik:specyfikacje:gmlas:geodezyjnaEwidencjaSieciUzbrojeniaTerenu:1.0" xmlns:bdz="urn:gugik:specyfikacje:gmlas:bazaDanychObiektowTopograficznych500:1.0" xmlns:egb="urn:gugik:specyfikacje:gmlas:ewidencjaGruntowBudynkow:1.0" xmlns:bt="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rcw="urn:gugik:specyfikacje:gmlas:rejestrCenIWartosciNieruchomosci:1.0" xsi:schemaLocation="urn:gugik:specyfikacje:gmlas:modelPodstawowy:1.0 BT_ModelPodstawowy.xsd urn:gugik:specyfikacje:gmlas:osnowaGeodezyjna:1.0 OS_Osnowa.xsd urn:gugik:specyfikacje:gmlas:geodezyjnaEwidencjaSieciUzbrojeniaTerenu:1.0 GESUT.xsd urn:gugik:specyfikacje:gmlas:bazaDanychObiektowTopograficznych500:1.0 BDOT500.xsd urn:gugik:specyfikacje:gmlas:ewidencjaGruntowBudynkow:1.0 EGB_OgolnyObiekt.xsd urn:gugik:specyfikacje:gmlas:rejestrCenIWartosciNieruchomosci:1.0 RCW_RCiWN.xsd http://www.opengis.net/gml/3.2 http://schemas.opengis.net/gml/3.2.1/gml.xsd" gml:id="_GML">' + '\n'
+    for i in range(len(xmlListaDzialek)):
+        dzialkiIPunkty += xmlListaPunktow[i] + '\n' + xmlListaDzialek[i]
+    # wersjaKoncowa = podzielonyGML[0] + dzialkiIPunkty + wzor + podzielonyGML[1]
+    dzialkiIPunkty +=  '</gml:FeatureCollection>'
+    return dzialkiIPunkty
+#wersjaKoncowa = dodajDzialkiEwidDoGML(gml, xmlListaDzialek, xmlListaPuntkow)
+wersjaKoncowa = zlaczDzialkiEwidIPunkty(xmlListaDzialek, xmlListaPuntkow)
+#print(wersjaKoncowa)
+exportXML(r'daneXML.gml', wersjaKoncowa)
